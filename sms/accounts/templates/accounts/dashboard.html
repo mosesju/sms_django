@@ -12,10 +12,15 @@
             <a href="" class="btn btn-primary btn-sm btn-block">Add Group</a>
             <table class="table table-sm">
                 <tr>
-                    <th></th>
                     <th>Group</th>
-                    <th>Size</th>
+                    <th>Description</th>
                 </tr>
+                {% for group in groups %}
+                    <tr>
+                        <td>{{ group.group_name }}</td>
+                        <td>{{ group.description }}</td>
+                    </tr>
+                {% endfor %}
             </table>
         </div>
     </div>
@@ -26,12 +31,19 @@
             <a href="" class="btn btn-primary btn-sm btn-block">Create Text</a>
             <table class="table table-sm">
                 <tr>
-                    <th>Text</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Update</th>
-                    <th>Remove</th>
+                    <th>Text Name</th>
+                    <th>Send Date</th>
+                    <th>Group</th>
+                    <th>Text Body</th>
                 </tr>
+                {% for text in texts %}
+                    <tr>
+                        <td>{{ text.name }}</td>
+                        <td>{{ text.send_date }}</td>
+                        <td>{{ text.group }}</td>
+                        <td>{{ text.text_body }}</td>
+                    </tr>
+                {% endfor %}
             </table>
         </div>
     </div>
