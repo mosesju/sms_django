@@ -3,6 +3,7 @@ from groups.models import *
 from texts.models import Text
 # Create your views here.
 def groups(request):
+    # Filter by Account ID
     groups = Group.objects.all()
     # This should have a count for the total number of group members
     # contacts = Contact.objects.

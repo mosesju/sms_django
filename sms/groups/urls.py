@@ -3,6 +3,6 @@ from . import views
 
 # Create your views here.
 urlpatterns = [
-    path('', views.groups),
-    path('<str:pk>/', views.group)
+    path('', views.groups, name='groups'),
+    path('<str:pk>/', views.group, name='group')
 ]

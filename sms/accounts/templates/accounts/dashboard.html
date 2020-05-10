@@ -12,11 +12,13 @@
             <a href="" class="btn btn-primary btn-sm btn-block">Add Group</a>
             <table class="table table-sm">
                 <tr>
+                    <th></th>
                     <th>Group</th>
                     <th>Description</th>
                 </tr>
                 {% for group in groups %}
                     <tr>
+                        <td><a href="{% url 'group' group.id %}" class="btn btn-sm">View</a></td>
                         <td>{{ group.group_name }}</td>
                         <td>{{ group.description }}</td>
                     </tr>
@@ -31,6 +33,7 @@
             <a href="" class="btn btn-primary btn-sm btn-block">Create Text</a>
             <table class="table table-sm">
                 <tr>
+                    <th></th>
                     <th>Text Name</th>
                     <th>Send Date</th>
                     <th>Group</th>
@@ -38,6 +41,7 @@
                 </tr>
                 {% for text in texts %}
                     <tr>
+                        <td><a href="{% url 'text' text.id %}" class="btn btn-sm">View</a></td>
                         <td>{{ text.name }}</td>
                         <td>{{ text.send_date }}</td>
                         <td>{{ text.group }}</td>

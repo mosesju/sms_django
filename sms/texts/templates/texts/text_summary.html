@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Add Media Container -->
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ text.name }}</h1>
+        <h3>{{ text.group }}</h3>
+        <p>{{ text.send_date }}</p>
+        <hr>
+        <p class="lead">{{ text.text_body }}</p>
+    </div>
+    <div>
+        <!-- Text on Phone -->
+    </div>
+</div>
+
+{% endblock %}
