@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>{{group}}</h1>
+<p class="lead">{{group.description}}</p>
+<br>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="number-contacts">
+                <div class="card-header">
+                    <h5 class="card-title">Number of Contacts</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title" id="contact-count">{{ contact.count }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="texts-sent">
+                <div class="card-header">
+                    <h5 class="card-title">Texts Sent</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title" id="text-count">{{ texts.count }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Find one last Datapoint to add -->
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Orders Pending</h5>
+                    {{ pending }}
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="col-md row">
+    <div class="col-md-6">
+        <a href="" class="btn btn-block btn-info">Update Group</a>
+    </div>
+    <div class="col-md-6">
+        <a href="" class="btn btn-block btn-danger">Delete Group</a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Name</th>
+                    <th>Text Body</th>
+                    <th>Send Date</th>
+                    <!-- Media -->
+                </tr>
+                {% for text in all_texts %}
+                <tr>
+                    <td>{{ text.name }}</td>
+                    <td>{{ text.text_body }}</td>
+                    <td>{{ text.send_date }}</td>
+                    <!-- <td>MEDIA</td> -->
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

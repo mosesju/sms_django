@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Groups</h1>
+<br>
+<div class="row">
+    <div class="col-md">
+        <h4>Groups</h4>
+        <hr>
+        <div class="card card-body">
+            <a href="" class="btn btn-primary btn-sm btn-block">Add Group</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Group</th>
+                    <th>Description</th>
+                    <!-- Add the Count of phone numbers -->
+                </tr>
+                {% for group in groups %}
+                    <tr>
+                        <td>{{ group.group_name }}</td>
+                        <td>{{ group.description }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

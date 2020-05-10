@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Groups</h1>
+<br>
+<div class="row">
+    <div class="col-md">
+        <h4>Groups</h4>
+        <hr>
+        <div class="card card-body">
+            <a href="" class="btn btn-primary btn-sm btn-block">Add Group</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Group</th>
+                    <th>Name</th>
+                    <th>Text Body</th>
+                    <th>Send Date</th>
+                    <!-- Add the Count of phone numbers -->
+                </tr>
+                {% for text in texts %}
+                    <tr>
+                        <td>{{ text.group }}</td>
+                        <td>{{ text.name }}</td>
+                        <td>{{ text.text_body }}</td>
+                        <td>{{ text.send_date }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
