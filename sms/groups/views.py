@@ -13,10 +13,5 @@ def group(request, pk):
     contact = Contact.objects.filter(group=group)
     # texts returns all texts belonging to the group
     texts = Text.objects.filter(group_id=pk)
-    # text_data = 
-    all_texts =[]
-    for text in texts:
-        all_texts.append(text)
-    context = {'group':group, 'contact':contact,'texts':texts,
-    'all_texts':all_texts}
+    context = {'group':group, 'contact':contact,'texts':texts}
     return render(request, 'groups/group.html', context)
