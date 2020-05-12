@@ -12,8 +12,19 @@ def text_summary(request, pk):
     context = {'text':text}
     return render(request, 'texts/text_summary.html', context)
 
-def addText(request):
+def addText(request, pk):
     form = TextForm()
+    if request.method =='POST':
+        form = TextForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form':form}
+    return render(request, 'texts/text_form.html', context)
+
+def addTextID(request, pk):
+    group = Text.objects.get(id=pk)
+    form = TextForm(initial={'group':group})
     if request.method =='POST':
         form = TextForm(request.POST)
         if form.is_valid():

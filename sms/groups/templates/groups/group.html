@@ -48,10 +48,13 @@
 </div>
 <br>
 <div class="col-md row">
-    <div class="col-md-6">
+    <div class="col-md-4">
+        <a href="{% url 'add_text_id' group.id %}" class="btn btn-block btn-success">Create Text</a>
+    </div>
+    <div class="col-md-4">
         <a href="{% url 'update_group' group.id %}" class="btn btn-block btn-info">Update Group</a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <a href="{% url 'delete_group' group.id %}" class="btn btn-block btn-danger">Delete Group</a>
     </div>
 </div>
