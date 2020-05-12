@@ -28,3 +28,25 @@ def addGroup(request):
             return redirect('/')
     context = {'form':form}
     return render(request, 'groups/group_form.html', context)
+
+def updateGroup(request, pk):
+    group = Group.objects.get(id=pk)
+    form = GroupForm(instance=group)
+
+    if request.method =='POST':
+        form = GroupForm(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form':form}
+    return render(request, 'groups/group_form.html', context)
+
+def deleteGroup(request, pk):
+    group = Group.objects.get(id=pk)
+    if request.method == 'POST':
+        group.delete()
+        return redirect('/')
+ 
+    context={'item':group}
+    return render(request, 'groups/delete.html', context)

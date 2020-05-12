@@ -49,10 +49,10 @@
 <br>
 <div class="col-md row">
     <div class="col-md-6">
-        <a href="" class="btn btn-block btn-info">Update Group</a>
+        <a href="{% url 'update_group' group.id %}" class="btn btn-block btn-info">Update Group</a>
     </div>
     <div class="col-md-6">
-        <a href="" class="btn btn-block btn-danger">Delete Group</a>
+        <a href="{% url 'delete_group' group.id %}" class="btn btn-block btn-danger">Delete Group</a>
     </div>
 </div>
 <br>

@@ -5,5 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.texts, name='texts'),
     path('add/', views.addText, name='addText'),
+    path('update/<str:pk>/', views.updateText, name='update_text'),
+    path('delete/<str:pk>/', views.deleteText, name='delete_text'),
     path('<str:pk>/', views.text_summary, name='text_summary')
 ]

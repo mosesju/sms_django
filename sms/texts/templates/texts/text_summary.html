@@ -2,6 +2,7 @@
 {% block content %}
 
 <!-- Add Media Container -->
+
 <div class="row">
     <div class="col-md-8">
         <h1>{{ text.name }}</h1>
@@ -13,6 +14,11 @@
     <div>
         <!-- Text on Phone or stats -->
     </div>
+</div>
+<div>
+    <a href="{% url 'update_text' text.id %}" class="btn btn-sm btn-info">Update Text</a>
+    <a href="{% url 'delete_text' text.id %}" class="btn btn-sm btn-danger">Delete Text</a>
+
 </div>
 
 {% endblock %}

@@ -5,11 +5,11 @@
 <h1>Dashboard</h1>
 <br>
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
         <h4>Groups</h4>
         <hr>
         <div class="card card-body">
-            <a href="{% url 'addGroup' %}" class="btn btn-primary btn-sm btn-block">Add Group</a>
+            <a href="{% url 'add_group' %}" class="btn btn-primary btn-sm btn-block">Add Group</a>
             <table class="table table-sm">
                 <tr>
                     <th></th>
@@ -18,7 +18,7 @@
                 </tr>
                 {% for group in groups %}
                     <tr>
-                        <td><a href="" class="btn btn-sm">View</a></td>
+                        <td><a href="{% url 'group' group.id %}" class="btn btn-sm">View</a></td>
                         <td>{{ group.group_name }}</td>
                         <td>{{ group.description }}</td>
                     </tr>
@@ -26,7 +26,7 @@
             </table>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6">
         <h4>Last 5 Texts</h4>
         <hr>
         <div class="card card-body">
@@ -35,17 +35,13 @@
                 <tr>
                     <th></th>
                     <th>Text Name</th>
-                    <th>Send Date</th>
                     <th>Group</th>
-                    <th>Text Body</th>
                 </tr>
                 {% for text in texts %}
                     <tr>
                         <td><a href="{% url 'text_summary' text.id %}" class="btn btn-sm">View</a></td>
                         <td>{{ text.name }}</td>
-                        <td>{{ text.send_date }}</td>
                         <td>{{ text.group }}</td>
-                        <td>{{ text.text_body }}</td>
                     </tr>
                 {% endfor %}
             </table>
