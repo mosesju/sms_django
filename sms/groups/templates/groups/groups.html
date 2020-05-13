@@ -8,16 +8,30 @@
     <div class="col-md">
         <h4>Groups</h4>
         <hr>
+        <div class="row">
+            <div class="col">
+                <div class="card card-body">
+                    <form method="get">
+                        {{ myFilter.form }}
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                    <div class="col-md-6">
+                        <a href="" class="btn btn-primary btn-sm">Add Group</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card card-body">
-            <a href="" class="btn btn-primary btn-sm btn-block">Add Group</a>
             <table class="table table-sm">
                 <tr>
+                    <th></th>
                     <th>Group</th>
                     <th>Description</th>
                     <!-- Add the Count of phone numbers -->
                 </tr>
                 {% for group in groups %}
                     <tr>
+                        <td><a href="{% url 'group' group.id %}" class="btn btn-sm">View</a></td>
                         <td>{{ group.group_name }}</td>
                         <td>{{ group.description }}</td>
                     </tr>

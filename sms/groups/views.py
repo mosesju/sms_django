@@ -2,13 +2,19 @@ from django.shortcuts import render, redirect
 from groups.models import *
 from texts.models import Text
 from .forms import GroupForm
+from .filters import GroupFilter
 # Create your views here.
 def groups(request):
     # Filter by Account ID
+    print(request)
     groups = Group.objects.all()
-    # This should have a count for the total number of group members
+    # This should have a count for the total number of group members in the
+    # template. Also I can build it so that there is management panel on top
+    # where you can add a group, check the stats etc...
     # contacts = Contact.objects.
-    context = {'groups': groups}
+    myFilter = GroupFilter(request.GET, queryset=groups)
+    groups = myFilter.qs
+    context = {'groups': groups, 'myFilter': myFilter}
     return render(request, 'groups/groups.html', context)
 
 def group(request, pk):

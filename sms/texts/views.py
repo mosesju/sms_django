@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+
 from .models import *
 from .forms import TextForm
+from .filters import TextFilter
 # Create your views here.
 def texts(request):
     texts = Text.objects.all()
