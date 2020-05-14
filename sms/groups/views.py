@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
+
 from groups.models import *
 from texts.models import Text
 from .forms import GroupForm
 from .filters import GroupFilter
 # Create your views here.
+@login_required(login_url='login')
 def groups(request):
     # Filter by Account ID
     print(request)
@@ -17,6 +21,7 @@ def groups(request):
     context = {'groups': groups, 'myFilter': myFilter}
     return render(request, 'groups/groups.html', context)
 
+@login_required(login_url='login')
 def group(request, pk):
     group = Group.objects.get(id=pk)
     contact = Contact.objects.filter(group=group)
@@ -25,6 +30,7 @@ def group(request, pk):
     context = {'group':group, 'contact':contact,'texts':texts}
     return render(request, 'groups/group.html', context)
 
+@login_required(login_url='login')
 def addGroup(request):
     form = GroupForm()
     if request.method =='POST':
@@ -35,6 +41,7 @@ def addGroup(request):
     context = {'form':form}
     return render(request, 'groups/group_form.html', context)
 
+@login_required(login_url='login')
 def updateGroup(request, pk):
     group = Group.objects.get(id=pk)
     form = GroupForm(instance=group)
@@ -48,6 +55,7 @@ def updateGroup(request, pk):
     context = {'form':form}
     return render(request, 'groups/group_form.html', context)
 
+@login_required(login_url='login')
 def deleteGroup(request, pk):
     group = Group.objects.get(id=pk)
     if request.method == 'POST':

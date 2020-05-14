@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card card-body">
+        <div class="d-flex justify-content-center">
+            <h3>Login</h3>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <!-- Add FA icons HERE<span class="input-group-text"><i class="fas fa-user"></i></span> -->
+                    </div>
+                    <input type="text" name="username">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <!-- Add FA icons HERE<span class="input-group-text"><i class="fas fa-user"></i></span> -->
+                    </div>
+                    <input type="password" name="password">
+                </div>
+                
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    <input class="btn login_btn" type="submit" value="Login">
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    //Query All input fields
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder='Username..';
+    form_fields[2].placeholder='Email..';
+    form_fields[3].placeholder='Enter password...';
+    form_fields[4].placeholder='Re-enter Password...';
+
+
+    for (var field in form_fields){	
+        form_fields[field].className += ' form-control'
+    }
+</script>
+{% endblock %}
