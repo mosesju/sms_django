@@ -25,38 +25,43 @@ def account(request):
 
 @unauthenticated_user
 def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        form = UserCreationForm()
-        if request.method =='POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for '+user)
-                return redirect('login')
-        context={'form':form}
-        return render(request, 'accounts/register.html', context)
+    form = CreateUserForm()
+    if request.method =='POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+
+            account = Account.objects.create(
+                user=user,
+                name=user.username,
+                email=email
+            )
+            print(account)
+            messages.success(request, 'Account was created for '+username)
+            return redirect('login')
+        else:
+            messages.info(request, 'Something went wrong')
+
+    context={'form':form}
+    return render(request, 'accounts/register.html', context)
 
 @unauthenticated_user
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-            user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                messages.info(request, 'username OR password is incorrect')
-        context={}
-        return render(request, 'accounts/login.html', context)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'username OR password is incorrect')
+    context={}
+    return render(request, 'accounts/login.html', context)
 
 def logoutUser(request):
     logout(request)

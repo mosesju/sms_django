@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="container">
     <div class="card card-body">
@@ -27,10 +28,21 @@
                   </div>
             </form>
         </div>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+                    {% for message in messages %}
+			            <p id="messages">{{message}}</p>
+		            {% endfor %}
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+                Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+            </div>
+        </div>
     </div>
 </div>
 <script>
-    //Query All input fields
     var form_fields = document.getElementsByTagName('input')
     form_fields[1].placeholder='Username..';
     form_fields[2].placeholder='Password..';
@@ -39,4 +51,5 @@
         form_fields[field].className += ' form-control'
     }
 </script>
+<script src="{% static 'javascripts/auth.js' %}">auth.test();</script>
 {% endblock %}
