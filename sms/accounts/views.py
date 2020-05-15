@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, AccountForm
 from groups.models import *
 from texts.models import *
 from .models import *
@@ -18,9 +18,17 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 @login_required(login_url='login')
-def account(request):
-    # accounts=
-    context={}
+def accountSettings(request):
+    # request.user is the username
+    account = request.user.account
+    print(account)
+    form = AccountForm(instance=account)
+    print(form)
+    if request == 'POST':
+        form = AccountForm(request.POST, request.FILES , instance=account)
+        if form.is_valid():
+            form.save()
+    context={'form':form}
     return render(request, 'accounts/account.html', context)
 
 @unauthenticated_user
