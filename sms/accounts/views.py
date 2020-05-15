@@ -8,6 +8,7 @@ from .forms import CreateUserForm
 from groups.models import *
 from texts.models import *
 from .models import *
+from .decorators import unauthenticated_user
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
@@ -22,6 +23,7 @@ def account(request):
     context={}
     return render(request, 'accounts/account.html', context)
 
+@unauthenticated_user
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -37,6 +39,7 @@ def registerPage(request):
         context={'form':form}
         return render(request, 'accounts/register.html', context)
 
+@unauthenticated_user
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
