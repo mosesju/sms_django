@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Texts</h1>
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{ myFilter.form }}
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Text Body</th>
+                    <th>Send Date</th>
+                    <!-- Media -->
+                </tr>
+                {% for text in texts %}
+                <tr>
+                    <td><a href="">View</a></td>
+                    <td>{{ text.name }}</td>
+                    <td>{{ text.text_body }}</td>
+                    <td>{{ text.send_date }}</td>
+                    <!-- <td>MEDIA</td> -->
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
