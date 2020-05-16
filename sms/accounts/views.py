@@ -21,9 +21,7 @@ def home(request):
 def accountSettings(request):
     # request.user is the username
     account = request.user.account
-    print(account)
     form = AccountForm(instance=account)
-    print(form)
     if request == 'POST':
         form = AccountForm(request.POST, request.FILES , instance=account)
         if form.is_valid():
