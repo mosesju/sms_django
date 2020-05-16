@@ -13,4 +13,4 @@ class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = '__all__'
-        exclude = ['date_created', 'plan']
+        exclude = ['date_created', 'user']

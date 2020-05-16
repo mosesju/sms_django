@@ -32,10 +32,12 @@ def group(request, pk):
 
 @login_required(login_url='login')
 def addGroup(request):
-    form = GroupForm()
+    account = request.user
+    form = GroupForm(instance=account)
     if request.method =='POST':
-        form = GroupForm(request.POST)
+        form = GroupForm(request.POST, instance=account)
         if form.is_valid():
+            print(form.cleaned_data)
             form.save()
             return redirect('/')
     context = {'form':form}

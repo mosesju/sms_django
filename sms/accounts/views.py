@@ -22,10 +22,14 @@ def accountSettings(request):
     # request.user is the username
     account = request.user.account
     form = AccountForm(instance=account)
-    if request == 'POST':
-        form = AccountForm(request.POST, request.FILES , instance=account)
+    if request.method == 'POST':
+        form = AccountForm(request.POST, instance=account)
+        print('form')
         if form.is_valid():
-            form.save()
+            print('form valid')
+            form.save(commit=True)
+            return redirect('/')
+
     context={'form':form}
     return render(request, 'accounts/account.html', context)
 
